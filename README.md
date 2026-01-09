@@ -1,4 +1,4 @@
-# E-commerce Admin Dashboard (AdminCart-SSR)
+# AdminCart-SSR
 
 A modern, full-featured admin dashboard for e-commerce management built with **Next.js 15**, **TypeScript**, **Prisma**, and **NextAuth**.
 
@@ -270,3 +270,4 @@ MIT License
 ---
 
 Built with ❤️ using Next.js 15, TypeScript, and modern web technologies.
+
