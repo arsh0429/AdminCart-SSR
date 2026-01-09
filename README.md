@@ -80,8 +80,8 @@ npm install
 createdb cdc_dashboard
 
 # Create database user (if needed)
-psql -c "CREATE USER mohit-adoni WITH PASSWORD 'admin123';"
-psql -c "GRANT ALL PRIVILEGES ON DATABASE cdc_dashboard TO mohit-adoni;"
+psql -c "CREATE USER arsh_vats WITH PASSWORD 'admin123';"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE cdc_dashboard TO arsh_vats;"
 ```
 
 ### 3. Environment Variables
@@ -90,7 +90,7 @@ Create `.env` file:
 
 ```env
 # Database
-DATABASE_URL="postgresql://mohit-adoni:admin123@localhost:5432/cdc_dashboard"
+DATABASE_URL="postgresql://neondb_owner:npg_K0FdP3nDyebU@ep-still-bar-afuf26zt-pooler.c-2.us-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 # NextAuth
 NEXTAUTH_URL=http://localhost:3000
@@ -354,5 +354,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ---
 
 Built with ❤️ using Next.js 15, TypeScript, and modern web technologies.
-#   A d m i n C a r t - S S R  
+#   A d m i n C a r t - S S R 
+ 
  
