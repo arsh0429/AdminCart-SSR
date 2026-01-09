@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -23,6 +23,9 @@ export function MultiStepProductForm({ categories }: MultiStepProductFormProps) 
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+  const [categoryError, setCategoryError] = useState<string | null>(null);
+  const [categoryOptions, setCategoryOptions] = useState(categories);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -33,6 +36,46 @@ export function MultiStepProductForm({ categories }: MultiStepProductFormProps) 
     stock: "",
     image: "",
   });
+
+  // Always hydrate category options from the latest server data/API.
+  useEffect(() => {
+    setCategoryOptions(categories);
+  }, [categories]);
+
+  // Ensure we preselect a category once options exist.
+  useEffect(() => {
+    if (!formData.categoryId && categoryOptions.length > 0) {
+      setFormData((prev) => ({ ...prev, categoryId: categoryOptions[0].id }));
+    }
+  }, [categoryOptions, formData.categoryId]);
+
+  // If categories are missing (e.g., DB empty), fetch from API and surface errors.
+  useEffect(() => {
+    if (categories.length > 0) return;
+
+    const fetchCategories = async () => {
+      try {
+        setIsLoadingCategories(true);
+        setCategoryError(null);
+        const res = await fetch("/api/categories");
+        if (!res.ok) throw new Error("Failed to load categories");
+        const data: Array<{ id: string; name: string }> = await res.json();
+        setCategoryOptions(data);
+
+        // Preselect first category when we get options back
+        if (data.length > 0) {
+          setFormData((prev) => ({ ...prev, categoryId: data[0].id }));
+        }
+      } catch (error: any) {
+        setCategoryError(error.message || "Could not load categories");
+        toast.error("Unable to load categories. Please try again.");
+      } finally {
+        setIsLoadingCategories(false);
+      }
+    };
+
+    fetchCategories();
+  }, [categories.length]);
 
   const steps = [
     { number: 1, name: "Basic Info", icon: Package },
@@ -195,14 +238,25 @@ export function MultiStepProductForm({ categories }: MultiStepProductFormProps) 
                     value={formData.categoryId}
                     onChange={handleInputChange}
                     required
-                    className="flex h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+                    disabled={isLoadingCategories || categoryOptions.length === 0}
+                    title="Select a product category"
+                    className="h-11 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-muted"
                   >
-                    {categories.map((category) => (
+                    <option value="" disabled>
+                      {isLoadingCategories ? "Loading categories..." : "Select a category"}
+                    </option>
+                    {categoryOptions.map((category) => (
                       <option key={category.id} value={category.id}>
                         {category.name}
                       </option>
                     ))}
                   </select>
+                  {categoryError && (
+                    <p className="text-xs text-red-600">{categoryError}</p>
+                  )}
+                  {(!isLoadingCategories && categoryOptions.length === 0 && !categoryError) && (
+                    <p className="text-xs text-muted-foreground">No categories available. Create a category first.</p>
+                  )}
                 </div>
               </motion.div>
             )}

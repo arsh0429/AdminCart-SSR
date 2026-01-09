@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,79 +5,79 @@
 
 @layer base {
   :root {
-    /* Light Mode - Modern Teal & Orange Theme */
+    /* Light Mode - Indigo & Rose Theme */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    
-    --primary: 173 80% 40%;
+
+    --primary: 245 58% 51%; /* indigo-600 */
     --primary-foreground: 0 0% 100%;
-    
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    
-    --muted: 210 40% 96%;
+
+    --secondary: 340 82% 52%; /* rose-500 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 214 32% 96%;
     --muted-foreground: 215 16% 47%;
-    
-    --accent: 173 80% 40%;
+
+    --accent: 271 81% 56%; /* violet-500 */
     --accent-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
+
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 173 80% 40%;
-    
+    --ring: 245 58% 51%;
+
     --radius: 0.75rem;
-    
-    /* Premium gradients - Teal/Orange theme */
-    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
-    --gradient-secondary: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-    --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-    --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+
+    /* Premium gradients - Indigo/Rose theme */
+    --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); /* indigo -> violet */
+    --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); /* pink -> rose */
+    --gradient-success: linear-gradient(135deg, #22c55e 0%, #84cc16 100%); /* emerald -> lime */
+    --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); /* amber -> orange */
   }
   
   .dark {
-    /* Dark Mode - Improved Colors */
-    --background: 220 26% 14%;
+    /* Dark Mode - Indigo & Rose */
+    --background: 230 25% 15%;
     --foreground: 213 31% 91%;
-    
-    --card: 220 23% 18%;
+
+    --card: 230 21% 20%;
     --card-foreground: 213 31% 91%;
-    
-    --popover: 220 23% 18%;
+
+    --popover: 230 21% 20%;
     --popover-foreground: 213 31% 91%;
-    
-    --primary: 173 80% 50%;
-    --primary-foreground: 220 26% 14%;
-    
-    --secondary: 220 17% 24%;
-    --secondary-foreground: 213 31% 91%;
-    
-    --muted: 220 17% 24%;
+
+    --primary: 245 58% 60%;
+    --primary-foreground: 230 25% 15%;
+
+    --secondary: 340 82% 60%;
+    --secondary-foreground: 230 25% 15%;
+
+    --muted: 230 16% 26%;
     --muted-foreground: 213 15% 65%;
-    
-    --accent: 173 80% 50%;
-    --accent-foreground: 220 26% 14%;
-    
+
+    --accent: 271 81% 62%;
+    --accent-foreground: 230 25% 15%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 213 31% 91%;
-    
-    --border: 220 17% 24%;
-    --input: 220 17% 24%;
-    --ring: 173 80% 50%;
-    
+
+    --border: 230 16% 26%;
+    --input: 230 16% 26%;
+    --ring: 245 58% 60%;
+
     /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
-    --gradient-secondary: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-    --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-    --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+    --gradient-success: linear-gradient(135deg, #22c55e 0%, #84cc16 100%);
+    --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
   }
 }
 
@@ -91,7 +90,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -107,30 +106,30 @@
 }
 
 @layer utilities {
-  /* Premium gradient utilities - Teal/Orange */
+  /* Premium gradient utilities - Indigo/Rose */
   .gradient-teal {
-    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+    background: var(--gradient-primary);
   }
-  
+
   .gradient-orange {
-    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+    background: var(--gradient-secondary);
   }
-  
+
   .gradient-green {
-    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    background: var(--gradient-success);
   }
-  
+
   .gradient-purple {
-    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    background: var(--gradient-accent);
   }
-  
+
   /* Backward compatibility */
   .gradient-blue {
-    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+    background: var(--gradient-primary);
   }
-  
+
   .gradient-pink {
-    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+    background: var(--gradient-secondary);
   }
   
   /* Glass effect */
@@ -140,39 +139,39 @@
   
   /* Premium shadows */
   .shadow-premium {
-    box-shadow: 
-      0 10px 40px -10px rgba(20, 184, 166, 0.2),
-      0 0 0 1px rgba(20, 184, 166, 0.05);
+    box-shadow:
+      0 10px 40px -10px rgba(79, 70, 229, 0.2),
+      0 0 0 1px rgba(79, 70, 229, 0.06);
   }
   
   .shadow-premium-lg {
-    box-shadow: 
-      0 20px 60px -10px rgba(20, 184, 166, 0.3),
-      0 0 0 1px rgba(20, 184, 166, 0.1);
+    box-shadow:
+      0 20px 60px -10px rgba(79, 70, 229, 0.3),
+      0 0 0 1px rgba(79, 70, 229, 0.12);
   }
   
   .dark .shadow-premium {
-    box-shadow: 
-      0 10px 40px -10px rgba(20, 184, 166, 0.4),
-      0 0 0 1px rgba(20, 184, 166, 0.1);
+    box-shadow:
+      0 10px 40px -10px rgba(79, 70, 229, 0.45),
+      0 0 0 1px rgba(79, 70, 229, 0.12);
   }
   
   .dark .shadow-premium-lg {
-    box-shadow: 
-      0 20px 60px -10px rgba(20, 184, 166, 0.5),
-      0 0 0 1px rgba(20, 184, 166, 0.15);
+    box-shadow:
+      0 20px 60px -10px rgba(79, 70, 229, 0.55),
+      0 0 0 1px rgba(79, 70, 229, 0.16);
   }
   
   /* Text gradients */
   .text-gradient-teal {
-    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .text-gradient-purple {
-    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+    background: var(--gradient-secondary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -297,12 +296,12 @@ button, a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+  background: var(--gradient-primary);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+  background: var(--gradient-accent);
 }
 
 /* Selection color */

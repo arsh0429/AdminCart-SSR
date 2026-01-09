@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogOut, User, Moon, Sun } from "lucide-react";
+import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/components/theme-provider";
@@ -36,10 +37,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="flex h-16 items-center justify-between px-4 md:px-8">
-        <div className="flex items-center gap-4">
-          <h2 className="text-lg md:text-xl font-bold text-gradient-teal">
-            Admin Dashboard
-          </h2>
+        <div className="flex items-center gap-3">
+          <Image src="/logo.svg" alt="Logo" width={28} height={28} priority />
+          <h2 className="text-lg md:text-xl font-bold text-gradient-teal">Admin Dashboard</h2>
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
@@ -52,9 +52,9 @@ export function Header() {
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
-              <Sun className="h-4 w-4 text-orange-500" />
+              <Sun className="h-4 w-4 text-amber-500" />
             ) : (
-              <Moon className="h-4 w-4 text-teal-600" />
+              <Moon className="h-4 w-4 text-indigo-500" />
             )}
           </motion.button>
 
@@ -65,7 +65,7 @@ export function Header() {
                   <p className="text-sm font-medium text-foreground">{session?.user?.name || "User"}</p>
                   <p className="text-xs text-muted-foreground">{session?.user?.email}</p>
                 </div>
-                <Avatar className="h-9 w-9 border-2 border-teal-500">
+                <Avatar className="h-9 w-9 border-2 border-indigo-500">
                   <AvatarImage src={session?.user?.image || ""} />
                   <AvatarFallback className="gradient-teal text-white font-semibold">
                     {userInitials}

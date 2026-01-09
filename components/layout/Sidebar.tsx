@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Package, Settings, BookOpen, Zap } from "lucide-react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -19,26 +20,7 @@ export function Sidebar() {
     <div className="flex h-screen w-64 flex-col bg-card border-r border-border shadow-xl">
       {/* Logo Area */}
       <div className="flex h-20 items-center gap-3 border-b border-border px-6">
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", duration: 0.8 }}
-          className="relative flex h-12 w-12 items-center justify-center rounded-2xl gradient-teal shadow-premium"
-        >
-          <motion.div
-            animate={{
-              rotate: [0, 5, -5, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <Zap className="h-7 w-7 text-white fill-white" />
-          </motion.div>
-          <div className="absolute inset-0 rounded-2xl gradient-teal blur-md opacity-50" />
-        </motion.div>
+        <Image src="/logo.svg" alt="Logo" width={40} height={40} priority />
         <div>
           <h1 className="text-xl font-bold text-gradient-teal tracking-tight">AdminHub</h1>
           <p className="text-xs text-muted-foreground font-medium">Dashboard v1.0</p>

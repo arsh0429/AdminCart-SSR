@@ -104,6 +104,11 @@ export function ImageUpload({ value, onChange, onRemove }: ImageUploadProps) {
               onChange={handleUpload}
               disabled={isUploading}
               className="hidden"
+              id="product-image-upload"
+              name="product-image-upload"
+              aria-label="Upload product image"
+              aria-labelledby="upload-instructions"
+              title="Upload product image"
             />
             <div className="flex flex-col items-center gap-3">
               {isUploading ? (
@@ -117,7 +122,7 @@ export function ImageUpload({ value, onChange, onRemove }: ImageUploadProps) {
                     <Upload className="h-7 w-7 text-white" />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm font-semibold text-foreground">
+                    <p id="upload-instructions" className="text-sm font-semibold text-foreground">
                       Click to upload product image
                     </p>
                     <p className="text-xs text-muted-foreground mt-1">
